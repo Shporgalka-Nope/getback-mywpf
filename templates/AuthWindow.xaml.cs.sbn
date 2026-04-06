@@ -1,0 +1,47 @@
+using System.Windows;
+using {{ csproj }}.Data;
+using {{ csproj }}.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace {{ csproj }}.Windows
+{
+    public partial class {{ classname }} : Window
+    {
+        private {{ dbcontext }} context;
+        public {{ classname }}()
+        {
+            InitializeComponent();
+            context = new {{ dbcontext }}();
+        }
+
+        private void Button_authorization(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(BoxLogin.Text) && !string.IsNullOrWhiteSpace(BoxPassword.Text))
+            {
+                {{ usermodelname }} user = context.{{ usermodelname }}s.FirstOrDefault(q => q.Login == BoxLogin.Text && q.Password == BoxPassword.Text);
+                if (user != null)
+                {
+                    user.RoleNavigation = context.Roles.FirstOrDefault(q => q.Id == user.Role);
+                    Main main = new Main(user);
+                    main.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь не найден");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля");
+            }
+        }
+
+        private void Button_authorization_gouest(object sender, RoutedEventArgs e)
+        {
+            Main main = new Main();
+            main.Show();
+            this.Close();
+        }
+    }
+}
