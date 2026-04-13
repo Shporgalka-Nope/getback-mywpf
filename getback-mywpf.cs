@@ -23,13 +23,14 @@ void RunOneC()
     Console.WriteLine("[/] Выгрузка ИС для 1С...");
     try
     {
-        string dbFilePath = Path.Combine(baseDir, "foreign-files", "ДемоОВ");
-        Console.WriteLine(dbFilePath);
+        string dbSourcePath = Path.Combine(baseDir, "foreign-files", "ДемоОВ.dt");
+        string dbDestPath = Path.Combine(Directory.GetCurrentDirectory(), "ДемоОВ.dt");
+        File.Copy(dbSourcePath, dbDestPath);
     }
     catch(Exception ex)
     {
         Console.ForegroundColor = ConsoleColor.DarkRed;
-        Console.WriteLine($"[ERR] Произошла ошибка при копировании: \n{ex.Message}");
+        Console.WriteLine($"[ERR] Произошла ошибка при выгрузке: \n{ex.Message}");
         Console.ResetColor();
         return;
     }
