@@ -47,7 +47,9 @@ void RunOptions(Flags flags)
             csproj = projName,
             dbcontext = flags.ContextName,
             usermodelname = flags.UsersTableName,
-            classname = Path.GetFileName(readoutDir.Replace(".xaml.cs", ""))
+            classname = Path.GetFileName(readoutDir.Replace(".xaml.cs", "")),
+            manufacturer = flags.ManufacturesTableName,
+            supplier = flags.SuppliersTableName
         });
 
         File.WriteAllText(readoutDir, result);
