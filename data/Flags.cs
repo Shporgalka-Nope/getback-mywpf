@@ -1,28 +1,28 @@
 using CommandLine;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 public class Flags
 {
-    [Option('u', "user", Required = true, 
+    [Option('u', "user", Required = false, 
         HelpText = "Name of the user model after scaffold without extension. For example \"User\"")]
     public string UsersTableName { get; set; }
 
-    [Option('p', "product", Required = true, 
+    [Option('p', "product", Required = false, 
         HelpText = "Name of the products model after scaffold without extension. For example \"Product\"")]
     public string ProductsTableName {  get; set; }
 
-    [Option('o', "order", Required = true,
+    [Option('o', "order", Required = false,
         HelpText = "Name of the orders model after scaffold without extension. For example \"Order\"")]
     public string OrdersTableName { get; set; }
 
-    [Option('c', "context", Required = true,
+    [Option('c', "context", Required = false,
         HelpText = "Name of DBContext class after scaffold. For example \"ReAA_DBContext\"")]
     public string ContextName { get; set; }
+    
+    public bool GetOneC { get; set; }
 
-    [Option('m', "manufacturer", Required = true,
-        HelpText = "Name of the manufacturer model after scaffold without extension. For example \"Manufacturer\"")]
-    public string ManufacturesTableName { get; set; }
-
-    [Option('s', "supplier", Required = true,
-        HelpText = "Name of the supplier model after scaffold without extension. For example \"Supplier\"")]
-    public string SuppliersTableName { get; set; }
+    [Option("get-db", Required = false,
+        HelpText = "Выполнить команду scaffold-dbcontext.")]
+    public bool GetDatabase { get; set; }
 }
