@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WpfApp2.Migrations
+namespace getback_mywpf.Migrations
 {
     /// <inheritdoc />
     public partial class NewMigration : Migration
