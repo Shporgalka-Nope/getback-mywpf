@@ -2,10 +2,12 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
+	  
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>getback-mywpf</ToolCommandName>
     <PackageId>getback-mywpf</PackageId>
-	<Version>1.0.3</Version>
+	  <Authors>Artyom Re</Authors>
+	<Version>1.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="foreign-files\ДемоОВ.dt">

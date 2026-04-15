@@ -1,12 +1,12 @@
 ﻿using CommandLine;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[Verb("get-db", HelpText ="Выполнит серию команд для применения миграций и получения исходной БД." +
-    "\nПолная последовательность: Скаффолд для получения DBContext -> Применение миграций -> Скаффолд для получения исходной БД.")]
+[Verb("get-db", HelpText ="Выполнить серию команд для применения миграций и получения исходной БД.")]
 public class DbOptions
 {
     [Option('s', "server", Required = true, 
@@ -24,5 +24,9 @@ public class DbOptions
     [Option('e', "skip-ef-core", Required = false,
         HelpText = "Пропустить этап проверки наличия dotnet-ef")]
     public bool SkipEfCore { get; set; } = false;
+
+    [Option('u', "update-database", Required = false,
+        HelpText = "Создать миграции по таблицам в проекте. Удаляет старую БД ПОЛНОСТЬЮ, и создаёт новую с новыми таблицами.\nПрименять если были изменения в коде таблиц.")]
+    public bool UpdateDatabase { get; set; } = false;
 }
 

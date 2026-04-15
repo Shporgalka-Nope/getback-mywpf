@@ -23,6 +23,7 @@ namespace getback_mywpf.data.Helpers
         {
             _connectionString = $"Server={hostname};Database={database};Trusted_Connection=True;TrustServerCertificate=True;";
         }
+
         /// <summary>
         /// Perform the dotnet ef dbcontext scaffold command to generate the DbContext and entity classes based on the connection string provided.
         /// </summary>
@@ -65,6 +66,41 @@ namespace getback_mywpf.data.Helpers
 
             ConsoleTyper.PrintSuccesful("Применение миграций прошло успешно");
             return true;
+        }
+
+        public bool UpdateDB()
+        {
+            ConsoleTyper.PrintProcess("Создание миграций");
+            string command = $"ef migrations add AutoMigration_{Guid.NewGuid()} --project {Directory.GetCurrentDirectory()} --startup-project {Directory.GetCurrentDirectory()}";
+            if (!Execute(command))
+            {
+                ConsoleTyper.PrintError("Создание миграций провалилось");
+                PrintLogs();
+                return false;
+            }
+            ConsoleTyper.PrintSuccesful("Создание миграций прошло успешно");
+
+            ConsoleTyper.PrintProcess("Удаление старой БД");
+            command = $"ef database drop --force";
+            if (!Execute(command))
+            {
+                ConsoleTyper.PrintError("Удаление старой БД провалилось");
+                PrintLogs();
+                return false;
+            }
+            ConsoleTyper.PrintSuccesful("База данных удалена успешно");
+
+            ConsoleTyper.PrintProcess("Создание БД и применение миграций");
+            command = $"ef database update --project {Directory.GetCurrentDirectory()} --startup-project {Directory.GetCurrentDirectory()}";
+            if (!Execute(command))
+            {
+                ConsoleTyper.PrintError("Создание или применение миграций провалилось");
+                PrintLogs();
+                return false;
+            }
+
+            ConsoleTyper.PrintSuccesful("Создание и применение миграций прошло успешно");
+            return Scaffold();
         }
     }
 }

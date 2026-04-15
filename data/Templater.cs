@@ -10,33 +10,29 @@ internal class Templater
 {
     private readonly string BASE_DIR = AppDomain.CurrentDomain.BaseDirectory;
     private readonly string TEMPLATE_PATH = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "templates");
-    private readonly string MIGRATIONS_PATH = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "migrations");
 
     private string _projName = null;
     private string _contextClassName = null;
 
-    public Templater()
+    public Templater() {}
+    public void Scaffold()
     {
-        FindProj();
-    }
-    public void ScaffoldMigrations()
-    {
-        ConsoleTyper.PrintProcess("Скаффолдинг миграций");
-        Directory.CreateDirectory("./data/migrations");
-        string[] templates = Directory.GetFiles(MIGRATIONS_PATH);
-
+        if (!FindProj()) return;
+        ConsoleTyper.PrintProcess("Скаффолдинг .xaml и .xaml.cs");
+        Directory.CreateDirectory("./Windows/");
+        string[] templates = Directory.GetFiles(TEMPLATE_PATH);
         foreach (string template in templates)
         {
 
-            string fileText = File.ReadAllText(Path.Combine(template));
+            string fileText = File.ReadAllText(template);
             var rawSBN = Template.Parse(fileText);
             if (rawSBN.HasErrors)
             {
-                ConsoleTyper.PrintError($"Ошибка при парсинге шаблона: {template}");
+                ConsoleTyper.PrintError($"Пропуск: Ошибка при парсинге шаблона {template}");
                 continue;
             }
 
-            string readoutDir = $"./data/migrations/{Path.GetFileName(template)}";
+            string readoutDir = $"./Windows/{Path.GetFileName(template)}";
             readoutDir = readoutDir.Replace(".sbn", "");
 
             var result = rawSBN.Render(new
@@ -57,7 +53,11 @@ internal class Templater
 
     }
 
-    private void FindProj()
+    /// <summary>
+    /// Looks for .csproj file in the current directory and sets _projName field.
+    /// </summary>
+    /// <returns>Returns true if found, false otherwise.</returns>
+    private bool FindProj()
     {
         ConsoleTyper.PrintProcess("Поиск файла .csproj");
         string projFileDir = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csproj").First();
@@ -66,9 +66,10 @@ internal class Templater
             string projName = Path.GetFileNameWithoutExtension(projFileDir);
             ConsoleTyper.PrintSuccesful($".csproj Найден: { projName}");
             _projName = projName;
-            return;
+            return true;
         }
         ConsoleTyper.PrintError("Файл .csproj не найден");
+        return false;
     }
 }
 
