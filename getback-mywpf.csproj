@@ -6,20 +6,24 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>getback-mywpf</ToolCommandName>
     <PackageId>getback-mywpf</PackageId>
-	  <Authors>Artyom Re</Authors>
-	<Version>1.1.0</Version>
+	  <Authors>SH</Authors>
+	<Version>1.2.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="templates\AddOrder.xaml.cs.sbn" />
     <None Remove="templates\AddOrder.xaml.sbn" />
     <None Remove="templates\AddProductWindow.xaml.cs.sbn" />
     <None Remove="templates\AddProductWindow.xaml.sbn" />
+    <None Remove="templates\AuthWindow.xaml.cs.sbn" />
+    <None Remove="templates\AuthWindow.xaml.sbn" />
     <None Remove="templates\EditOrder.xaml.cs.sbn" />
     <None Remove="templates\EditOrder.xaml.sbn" />
     <None Remove="templates\EditProductWindow.xaml.cs.sbn" />
     <None Remove="templates\EditProductWindow.xaml.sbn" />
     <None Remove="templates\ItemEquipment.xaml.cs.sbn" />
     <None Remove="templates\ItemEquipment.xaml.sbn" />
+    <None Remove="templates\MainWindow.xaml.cs.sbn" />
+    <None Remove="templates\MainWindow.xaml.sbn" />
     <None Remove="templates\OrderWin.xaml.cs.sbn" />
     <None Remove="templates\OrderWin.xaml.sbn" />
   </ItemGroup>
@@ -39,6 +43,12 @@
     <Content Include="templates\AddProductWindow.xaml.sbn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="templates\AuthWindow.xaml.cs.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\AuthWindow.xaml.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\EditOrder.xaml.cs.sbn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -55,6 +65,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\ItemEquipment.xaml.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\MainWindow.xaml.cs.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\MainWindow.xaml.sbn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="templates\OrderWin.xaml.cs.sbn">
