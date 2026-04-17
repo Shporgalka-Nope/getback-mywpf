@@ -25,6 +25,10 @@ internal class Templater
             string fileName = Path.GetFileName(template).Replace(".sbn", "");
             try
             {
+                if (File.Exists($"./Windows/{fileName}"))
+                {
+                    ConsoleTyper.PrintError($"ПРОПУСК файл уже существует: {fileName}");
+                }
                 string fileText = File.ReadAllText(template);
                 File.WriteAllText($"./Windows/{fileName}", fileText);
             }
