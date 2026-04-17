@@ -37,12 +37,7 @@ internal class Templater
 
             var result = rawSBN.Render(new
             {
-                csproj = _projName,
-                //contextclassname = flags.ContextName,
-                //usermodelname = flags.UsersTableName,
-                //classname = Path.GetFileName(readoutDir.Replace(".xaml.cs", "")),
-                //manufacturer = flags.ManufacturesTableName,
-                //supplier = flags.SuppliersTableName
+                
             });
 
             File.WriteAllText(readoutDir, result);
