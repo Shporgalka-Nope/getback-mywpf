@@ -10,7 +10,57 @@
 	<Version>1.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="templates\AddOrder.xaml.cs.sbn" />
+    <None Remove="templates\AddOrder.xaml.sbn" />
+    <None Remove="templates\AddProductWindow.xaml.cs.sbn" />
+    <None Remove="templates\AddProductWindow.xaml.sbn" />
+    <None Remove="templates\EditOrder.xaml.cs.sbn" />
+    <None Remove="templates\EditOrder.xaml.sbn" />
+    <None Remove="templates\EditProductWindow.xaml.cs.sbn" />
+    <None Remove="templates\EditProductWindow.xaml.sbn" />
+    <None Remove="templates\ItemEquipment.xaml.cs.sbn" />
+    <None Remove="templates\ItemEquipment.xaml.sbn" />
+    <None Remove="templates\OrderWin.xaml.cs.sbn" />
+    <None Remove="templates\OrderWin.xaml.sbn" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="foreign-files\ДемоОВ.dt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\AddOrder.xaml.cs.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\AddOrder.xaml.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\AddProductWindow.xaml.cs.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\AddProductWindow.xaml.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\EditOrder.xaml.cs.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\EditOrder.xaml.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\EditProductWindow.xaml.cs.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\EditProductWindow.xaml.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\ItemEquipment.xaml.cs.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\ItemEquipment.xaml.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\OrderWin.xaml.cs.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\OrderWin.xaml.sbn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -25,12 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Update="templates\AuthWindow.sbn">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="templates\AuthWindow.xaml.cs.sbn">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="templates\AuthWindow.xaml.sbn">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

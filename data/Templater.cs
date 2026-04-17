@@ -17,35 +17,24 @@ internal class Templater
     public Templater() {}
     public void Scaffold()
     {
-        if (!FindProj()) return;
         ConsoleTyper.PrintProcess("Скаффолдинг .xaml и .xaml.cs");
         Directory.CreateDirectory("./Windows/");
         string[] templates = Directory.GetFiles(TEMPLATE_PATH);
         foreach (string template in templates)
         {
-
-            string fileText = File.ReadAllText(template);
-            var rawSBN = Template.Parse(fileText);
-            if (rawSBN.HasErrors)
+            string fileName = Path.GetFileName(template).Replace(".sbn", "");
+            try
             {
-                ConsoleTyper.PrintError($"Пропуск: Ошибка при парсинге шаблона {template}");
+                string fileText = File.ReadAllText(template);
+                File.WriteAllText($"./Windows/{fileName}", fileText);
+            }
+            catch (Exception ex)
+            {
+                ConsoleTyper.PrintError($"ПРОПУСК ошибка при скаффолдинге: {fileName} \n{ex.Message}");
                 continue;
             }
-
-            string readoutDir = $"./Windows/{Path.GetFileName(template)}";
-            readoutDir = readoutDir.Replace(".sbn", "");
-
-            var result = rawSBN.Render(new
-            {
-                
-            });
-
-            File.WriteAllText(readoutDir, result);
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine($"[!] Скопированно: {readoutDir}");
-            Console.ResetColor();
+            ConsoleTyper.PrintSuccesful($"Скаффолдинг завершён: {fileName}");
         }
-
     }
 
     /// <summary>
