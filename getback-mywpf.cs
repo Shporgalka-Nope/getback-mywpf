@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using CommandLine;
 using data.Helpers;
+using getback_mywpf.data;
 using getback_mywpf.data.Helpers;
 using Scriban;
 using Scriban.Syntax;
@@ -13,11 +14,11 @@ using Scriban.Syntax;
 string baseDir = AppDomain.CurrentDomain.BaseDirectory;
 string templatePath = Path.Combine(baseDir, "templates");
 
-Parser.Default.ParseArguments<Flags, OneCOptions, DbOptions, WpfOptions>(args)
+Parser.Default.ParseArguments<Flags, OneCOptions, DbOptions, WpfOptions, DocsOptions>(args)
     .WithParsed<OneCOptions>(args => RunOneC())     //Run this method for get-1c
     .WithParsed<DbOptions>(args => RunDB(args))     //Run this method for get-db
     .WithParsed<WpfOptions>(args => RunWPF())       //Run this method for get-wpf
-    .WithParsed<Flags>(RunOptions)                  //Run this method for custom flags
+    .WithParsed<DocsOptions>(args => RunHelp(args))     //Run this method for help-me
     .WithNotParsed(RunError);                       //Run this method for --help and --version
 
 //1C Methods
@@ -69,51 +70,58 @@ void RunWPF()
     //Begin scaffold
     templater.Scaffold();
 }
-void RunOptions(Flags flags)
+
+void RunHelp(DocsOptions args)
 {
-    //Console.WriteLine("[/] Поиск файла .csproj...");
-    //string projFileDir;
-    //projFileDir = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csproj").First();
-    //string projName = Path.GetFileNameWithoutExtension(projFileDir);
-    //Console.WriteLine($"[!] .csproj Найден: {projName}");
-
-    //Console.WriteLine($"[/] Скаффолдинг {projName}...");
-    //Directory.CreateDirectory("./Windows/");
-
-    ////Copy Windows
-    //string[] templates = Directory.GetFiles(templatePath);
-    //foreach(string template in templates)
-    //{
-        
-    //    string fileText = File.ReadAllText(Path.Combine(template));
-    //    var rawSBN = Template.Parse(fileText);
-    //    if (rawSBN.HasErrors) 
-    //    {
-    //        Console.ForegroundColor = ConsoleColor.DarkRed;
-    //        Console.WriteLine($"[ERR] Пропуск: {template}");
-    //        Console.ResetColor();
-    //        continue;
-    //    }
-
-    //    string readoutDir = $"./Windows/{Path.GetFileName(template)}";
-    //    readoutDir = readoutDir.Replace(".sbn", "");
-
-    //    var result = rawSBN.Render(new
-    //    {
-    //        csproj = projName,
-    //        dbcontext = flags.ContextName,
-    //        usermodelname = flags.UsersTableName,
-    //        classname = Path.GetFileName(readoutDir.Replace(".xaml.cs", "")),
-    //        //manufacturer = flags.ManufacturesTableName,
-    //        //supplier = flags.SuppliersTableName
-    //    });
-
-    //    File.WriteAllText(readoutDir, result);
-    //    Console.ForegroundColor = ConsoleColor.DarkGreen;
-    //    Console.WriteLine($"[!] Скопированно: {readoutDir}");
-    //    Console.ResetColor();
-    //}
+    Docs.GetPage(args.Page);
 }
+
+// Implement as improved get-wpf later
+//void RunOptions(Flags flags)
+//{
+//    //Console.WriteLine("[/] Поиск файла .csproj...");
+//    //string projFileDir;
+//    //projFileDir = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.csproj").First();
+//    //string projName = Path.GetFileNameWithoutExtension(projFileDir);
+//    //Console.WriteLine($"[!] .csproj Найден: {projName}");
+
+//    //Console.WriteLine($"[/] Скаффолдинг {projName}...");
+//    //Directory.CreateDirectory("./Windows/");
+
+//    ////Copy Windows
+//    //string[] templates = Directory.GetFiles(templatePath);
+//    //foreach(string template in templates)
+//    //{
+        
+//    //    string fileText = File.ReadAllText(Path.Combine(template));
+//    //    var rawSBN = Template.Parse(fileText);
+//    //    if (rawSBN.HasErrors) 
+//    //    {
+//    //        Console.ForegroundColor = ConsoleColor.DarkRed;
+//    //        Console.WriteLine($"[ERR] Пропуск: {template}");
+//    //        Console.ResetColor();
+//    //        continue;
+//    //    }
+
+//    //    string readoutDir = $"./Windows/{Path.GetFileName(template)}";
+//    //    readoutDir = readoutDir.Replace(".sbn", "");
+
+//    //    var result = rawSBN.Render(new
+//    //    {
+//    //        csproj = projName,
+//    //        dbcontext = flags.ContextName,
+//    //        usermodelname = flags.UsersTableName,
+//    //        classname = Path.GetFileName(readoutDir.Replace(".xaml.cs", "")),
+//    //        //manufacturer = flags.ManufacturesTableName,
+//    //        //supplier = flags.SuppliersTableName
+//    //    });
+
+//    //    File.WriteAllText(readoutDir, result);
+//    //    Console.ForegroundColor = ConsoleColor.DarkGreen;
+//    //    Console.WriteLine($"[!] Скопированно: {readoutDir}");
+//    //    Console.ResetColor();
+//    //}
+//}
 
 void RunError(IEnumerable<Error> errors)
 {

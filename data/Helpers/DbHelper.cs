@@ -61,6 +61,7 @@ namespace getback_mywpf.data.Helpers
             {
                 ConsoleTyper.PrintError("Применение миграций провалилось");
                 PrintLogs();
+                Console.WriteLine(ex.Message);
                 return false;
             }
 
