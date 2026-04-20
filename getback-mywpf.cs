@@ -27,8 +27,8 @@ void RunOneC()
     ConsoleTyper.PrintProcess("Выгрузка ИС для 1С");
     try
     {
-        string dbSourcePath = Path.Combine(baseDir, "foreign-files", "ДемоОВ.dt");
-        string dbDestPath = Path.Combine(Directory.GetCurrentDirectory(), "ДемоОВ.dt");
+        string dbSourcePath = Path.Combine(baseDir, "foreign-files", "1Cv8.cf");
+        string dbDestPath = Path.Combine(Directory.GetCurrentDirectory(), "1Cv8.cf");
         File.Copy(dbSourcePath, dbDestPath);
     }
     catch(Exception ex)

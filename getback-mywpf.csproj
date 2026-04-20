@@ -7,10 +7,11 @@
     <ToolCommandName>getback-mywpf</ToolCommandName>
     <PackageId>getback-mywpf</PackageId>
 	  <Authors>SH</Authors>
-	<Version>1.3.0</Version>
+	<Version>1.3.1</Version>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="foreign-files\1Cv8.cf" />
     <None Remove="README.md" />
     <None Remove="templates\AddOrder.xaml.cs.sbn" />
     <None Remove="templates\AddOrder.xaml.sbn" />
@@ -30,7 +31,7 @@
     <None Remove="templates\OrderWin.xaml.sbn" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="foreign-files\ДемоОВ.dt">
+    <Content Include="foreign-files\1Cv8.cf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="README.md" Pack="true" PackagePath="\">
