@@ -7,7 +7,7 @@
     <ToolCommandName>getback-mywpf</ToolCommandName>
     <PackageId>getback-mywpf</PackageId>
 	  <Authors>SH</Authors>
-	<Version>1.3.1</Version>
+	<Version>1.3.2</Version>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
